@@ -9,11 +9,11 @@ require('dotenv').config();
 const app = express();
 
 const corsOptions = {
-    origin: 'http://127.0.0.1:5500', // Sesuaikan dengan URL frontend Anda
+    origin: 'http://127.0.0.1:5500', 
     optionsSuccessStatus: 200,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
-    credentials: true, // Jika Anda menggunakan cookie atau autentikasi berbasis sesi
+    credentials: true, 
     allowedHeaders: 'Content-Type,Authorization'
   };
 
