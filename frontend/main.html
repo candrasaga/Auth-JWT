@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+</head>
+<body>
+  <h1>Main Page</h1>
+  <div id="content"></div>
+
+  <script>
+    // Verifikasi token dan tampilkan data pengguna
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('token');
+      console.log('Token:', token);
+      if (!token) {
+        window.location.href = 'index.html';
+      } else {
+        fetch('http://localhost:3015/main', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        .then(response => {
+          if (response.status === 401 || response.status === 403) {
+            localStorage.removeItem('token');
+            window.location.href = 'index.html';
+          } else {
+            return response.json();
+          }
+        })
+        .then(data => {
+          if (data) {
+            document.getElementById('content').textContent = `Welcome to the main page, user ID: ${data.user.userId}`;
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          localStorage.removeItem('token');
+          window.location.href = 'index.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
