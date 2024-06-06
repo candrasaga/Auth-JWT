@@ -17,7 +17,7 @@
       if (!token) {
         window.location.href = 'index.html';
       } else {
-        fetch('http://localhost:3015/main', {
+        fetch('http://localhost:3000/main', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`
