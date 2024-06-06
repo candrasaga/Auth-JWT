@@ -27,7 +27,7 @@ app.get('/main', authenticateJWT, (req, res) => {
   res.json({ message: 'Welcome to the main page', user: req.user });
 });
 
-const PORT = process.env.PORT || 3015;
+const PORT = process.env.PORT || 3000;
 
 sequelize.sync()
   .then(() => {
